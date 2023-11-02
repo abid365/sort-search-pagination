@@ -16,6 +16,7 @@ export const OverlayStyle = styled.div`
   padding:20px 10px;
   text-align: center;
   left: 0px;
+  cursor: pointer;
 
   &:hover {
     opacity: 1;

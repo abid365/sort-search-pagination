@@ -21,6 +21,10 @@ const Home = () => {
     H2L: { method: (a, b) => b.price - a.price },
   };
 
+  //pagination
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage, setPostsPerPage] = useState(10);
+
   // rendering part
   return (
     <>
