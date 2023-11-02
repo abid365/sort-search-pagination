@@ -7,6 +7,7 @@ import { Card } from "../styled/Card.styled";
 import { GridStyle } from "../styled/Grid.styled";
 import { Flex } from "../styled/Flex.styled";
 import { OverlayStyle } from "../styled/Overlay.styled";
+import Pagination from "./Pagination";
 
 const Home = () => {
   // states
@@ -23,7 +24,15 @@ const Home = () => {
 
   //pagination
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage, setPostsPerPage] = useState(10);
+  const [postsPerPage] = useState(6);
+
+  //get current cards
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const carDbPaginated = carDB.slice(indexOfFirstPost, indexOfLastPost);
+
+  // cahnge page
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   // rendering part
   return (
@@ -65,7 +74,7 @@ const Home = () => {
         </Flex>
         <div>
           <GridStyle>
-            {carDB
+            {carDbPaginated
               .sort(sortFunctions[sortState].method)
               .filter((item) =>
                 search.toLowerCase() === ""
@@ -137,6 +146,11 @@ const Home = () => {
                 </Card>
               ))}
           </GridStyle>
+          <Pagination
+            postsPerPage={postsPerPage}
+            totalPosts={carDB.length}
+            paginate={paginate}
+          />
         </div>
       </Container>
     </>
