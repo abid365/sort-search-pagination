@@ -8,12 +8,12 @@ import { GridStyle } from "../styled/Grid.styled";
 import { Flex } from "../styled/Flex.styled";
 import { OverlayStyle } from "../styled/Overlay.styled";
 import Pagination from "./Pagination";
+import { SubContainer } from "../styled/SubContainer.styled";
 
 const Home = () => {
   // states
   const [sortState, setSortState] = useState("DEFAULT");
   const [search, setSearch] = useState("");
-  console.log(search);
 
   // sort object and functions
   const sortFunctions = {
@@ -50,19 +50,17 @@ const Home = () => {
               type="search"
               placeholder="Search by name or model"
             ></InputStyle>
-            <div
+            {/*   <div
               style={{
                 position: "relative",
-                left: "195px",
+                left: "190px",
                 cursor: "pointer",
-                top: "-32px",
+                top: "-36px",
                 border: "1px solid transparent",
-                width: "fit-content",
-                height: "object-fit",
               }}
             >
               🔍
-            </div>
+            </div> */}
           </form>
           <div>
             <SelectStyle onChange={(e) => setSortState(e.target.value)}>
@@ -146,11 +144,13 @@ const Home = () => {
                 </Card>
               ))}
           </GridStyle>
-          <Pagination
-            postsPerPage={postsPerPage}
-            totalPosts={carDB.length}
-            paginate={paginate}
-          />
+          <SubContainer>
+            <Pagination
+              postsPerPage={postsPerPage}
+              totalPosts={carDB.length}
+              paginate={paginate}
+            />
+          </SubContainer>
         </div>
       </Container>
     </>

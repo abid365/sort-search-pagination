@@ -20,4 +20,6 @@ export const OverlayStyle = styled.div`
 
   &:hover {
     opacity: 1;
+
+    
 `;

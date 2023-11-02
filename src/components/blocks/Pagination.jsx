@@ -1,4 +1,5 @@
 import React from "react";
+import { List } from "../styled/List.styled";
 
 const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
   const pageNumbers = [];
@@ -9,13 +10,17 @@ const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
   return (
     <div>
       <nav>
-        <ul style={{ display: "flex", gap: "10px", listStyle: "none" }}>
+        <ul style={{ display: "flex", gap: "10px", listStyleType: "none" }}>
           {pageNumbers.map((number) => (
-            <li key={number}>
-              <a onClick={() => paginate(number)} href="!#">
+            <List key={number}>
+              <a
+                style={{ textDecoration: "none" }}
+                onClick={() => paginate(number)}
+                href="!#"
+              >
                 {number}
               </a>
-            </li>
+            </List>
           ))}
         </ul>
       </nav>

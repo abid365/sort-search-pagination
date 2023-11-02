@@ -6,4 +6,12 @@ export const SelectStyle = styled.select`
   border: 1px solid #272a2d;
   color: #111110;
   transition: 0.5s ease;
+
+  @media (max-width: ${({ theme }) => theme.mobile}) {
+    padding: 8px 6px;
+    border-radius: 3px;
+    border: 1px solid #272a2d;
+    color: #111110;
+    transition: 0.5s ease;
+  }
 `;

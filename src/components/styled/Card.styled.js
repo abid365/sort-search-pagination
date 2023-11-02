@@ -8,7 +8,18 @@ export const Card = styled.div`
 
   & > div > img {
     width: 200px;
-    margin: 0 auto;
+  }
+
+  @media (max-width: ${({ theme }) => theme.mobile}) {
+    img {
+      width: 100px;
+    }
+  }
+
+  @media (max-width: ${({ theme }) => theme.tablet}) {
+    img {
+      width: 140px;s
+    }
   }
 
   & > div {
