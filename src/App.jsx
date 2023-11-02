@@ -13,9 +13,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <>
         <GlobalStyle />
-        <Container>
-          <Home />
-        </Container>
+        <Home />
       </>
     </ThemeProvider>
   );

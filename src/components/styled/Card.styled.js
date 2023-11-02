@@ -6,7 +6,7 @@ export const Card = styled.div`
   justify-content: space-between;
   border: 1px solid #e2e2e2;
 
-  & > img {
+  & > div > img {
     width: 200px;
     margin: 0 auto;
   }
