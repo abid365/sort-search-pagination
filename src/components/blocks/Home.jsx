@@ -8,19 +8,26 @@ import { GridStyle } from "../styled/Grid.styled";
 import { Flex } from "../styled/Flex.styled";
 
 const Home = () => {
+  // states
   const [sortState, setSortState] = useState("DEFAULT");
-  console.log(sortState);
+  const [search, setSearch] = useState("");
+  console.log(search);
+
+  // sort object and functions
   const sortFunctions = {
     DEFAULT: { method: (a, b) => null },
     L2H: { method: (a, b) => a.price - b.price },
     H2L: { method: (a, b) => b.price - a.price },
   };
+
+  // rendering part
   return (
     <>
       <Container>
         <Flex>
           <form>
             <InputStyle
+              onChange={(e) => setSearch(e.target.value)}
               type="search"
               placeholder="Search by name or model"
             ></InputStyle>
@@ -33,62 +40,70 @@ const Home = () => {
         </Flex>
         <div>
           <GridStyle>
-            {carDB.sort(sortFunctions[sortState].method).map((item, i) => (
-              <Card key={i}>
-                <img src={item.thumbnail} alt="" />
-                <div
-                  style={{
-                    backgroundColor: "#111113",
-                  }}
-                >
+            {carDB
+              .sort(sortFunctions[sortState].method)
+              .filter((item) =>
+                search.toLowerCase() === ""
+                  ? item
+                  : item.carBrand.toLowerCase().includes(search) ||
+                    item.model.toLocaleLowerCase().includes(search)
+              )
+              .map((item, i) => (
+                <Card key={i}>
+                  <img src={item.thumbnail} alt="" />
                   <div
                     style={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "center",
+                      backgroundColor: "#111113",
                     }}
                   >
-                    <h1 style={{ fontSize: "16px", fontFamily: "Roboto" }}>
-                      {item.carBrand}
-                    </h1>
-                    <span
+                    <div
                       style={{
-                        fontSize: "12px",
-                        fontFamily: "Roboto",
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "center",
                       }}
                     >
-                      Model: {item.model}
-                    </span>
+                      <h1 style={{ fontSize: "16px", fontFamily: "Roboto" }}>
+                        {item.carBrand}
+                      </h1>
+                      <span
+                        style={{
+                          fontSize: "12px",
+                          fontFamily: "Roboto",
+                        }}
+                      >
+                        Model: {item.model}
+                      </span>
+                    </div>
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "start",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <p
+                        style={{
+                          fontSize: "12px",
+                          fontFamily: "Roboto",
+                        }}
+                      >
+                        Model: {item.mileage}
+                      </p>
+                      <span
+                        style={{
+                          fontSize: "12px",
+                          fontFamily: "Roboto",
+                          padding: "0px 0px 10px 0px",
+                        }}
+                      >
+                        Price: ${item.price} USD
+                      </span>
+                    </div>
                   </div>
-                  <div
-                    style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "start",
-                      justifyContent: "space-between",
-                    }}
-                  >
-                    <p
-                      style={{
-                        fontSize: "12px",
-                        fontFamily: "Roboto",
-                      }}
-                    >
-                      Model: {item.mileage}
-                    </p>
-                    <span
-                      style={{
-                        fontSize: "12px",
-                        fontFamily: "Roboto",
-                        padding: "0px 0px 10px 0px",
-                      }}
-                    >
-                      Price: ${item.price} USD
-                    </span>
-                  </div>
-                </div>
-              </Card>
-            ))}
+                </Card>
+              ))}
           </GridStyle>
         </div>
       </Container>
