@@ -14,7 +14,7 @@ const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
           {pageNumbers.map((number) => (
             <List key={number}>
               <button
-                style={{ textDecoration: "none" }}
+                style={{ textDecoration: "none", border: "none" }}
                 onClick={() => paginate(number)}
               >
                 {number}
