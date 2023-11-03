@@ -13,13 +13,12 @@ const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
         <ul style={{ display: "flex", gap: "10px", listStyleType: "none" }}>
           {pageNumbers.map((number) => (
             <List key={number}>
-              <a
+              <button
                 style={{ textDecoration: "none" }}
                 onClick={() => paginate(number)}
-                href="!#"
               >
                 {number}
-              </a>
+              </button>
             </List>
           ))}
         </ul>
